@@ -1,12 +1,43 @@
 import java.util.*;
 
 public class Main {
+
     public static void main(String[] args) {
 
+         /*
+        int x1 = 0;
+        int v1 = 3;
+        int x2 = 4;
+        int v2 = 2;
+
+
+        System.out.println(kangaroo(x1, v1, x2, v2));
+
+
+
+
+        int s = 7;
+        int t = 11;
+        int a = 5;
+        int b = 15;
+        List<Integer> apples = new ArrayList<>(Arrays.asList(-2, 2, 1));
+        List<Integer> oranges = new ArrayList<>(Arrays.asList(5, -6));
+
+        countApplesAndOranges(s, t, a, b, apples, oranges);
 
         String s = "07:05:45PM";
         System.out.println(timeConversion(s));
-        /*
+        int n = 37;
+        int nextMultiple = ((n + 4) / 5) * 5;
+        System.out.println(nextMultiple);
+
+        List<Integer> arr = new ArrayList<>(Arrays.asList(73
+                , 67
+                , 38
+                , 33));
+
+        System.out.println(gradingStudents(arr));
+
         // Scanner sc = new Scanner(System.in);
         //int n = sc.nextInt();
         //staircase(n);
@@ -47,6 +78,72 @@ public class Main {
         //simpleArraySum(arr);
         */
 
+
+    }
+
+    public static String kangaroo(int x1, int v1, int x2, int v2) {
+
+
+        if (x2 > x1 && v2 > v1) {
+            return "NO";
+        } else if (x2 > x1 && v2 < v1) {
+            int j = 10000;
+            for (int i = 0; i < j; i++) {
+                x1 += v1;
+                x2 += v2;
+
+
+                if (x1 == x2) {
+                    return "YES";
+                }
+
+            }
+
+            return "NO";
+
+        } else {
+            return "NO";
+        }
+
+    }
+
+    public static void countApplesAndOranges(int s, int t, int a, int b, List<Integer> apples, List<Integer> oranges) {
+        List<Integer> resuList = new ArrayList<>(Arrays.asList(0, 0));
+        for (int apple : apples) {
+            apple += a;
+            if (apple >= s && apple <= t) {
+                int appleNum = resuList.get(0);
+                appleNum++;
+                resuList.set(0, appleNum);
+            }
+        }
+        for (int orange : oranges) {
+            orange += b;
+            if (orange >= s && orange <= t) {
+                int orangeNum = resuList.get(1);
+                orangeNum++;
+                resuList.set(1, orangeNum);
+            }
+        }
+        System.out.println(resuList.get(0));
+        System.out.println(resuList.get(1));
+    }
+
+    public static List<Integer> gradingStudents(List<Integer> grades) {
+        List<Integer> roundGrades = new ArrayList<>();
+
+        for (int num : grades) {
+            if (num >= 37) {
+                int nextMult = (((num + 4) / 5) * 5);
+                if (nextMult - num >= 3) {
+                    num = nextMult;
+                }
+                roundGrades.add(num);
+            } else {
+                roundGrades.add(num);
+            }
+        }
+        return roundGrades;
 
     }
 
