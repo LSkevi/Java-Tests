@@ -4,7 +4,15 @@ public class Main {
 
     public static void main(String[] args) {
 
-         /*
+
+        List<Integer> b = new ArrayList<>(Arrays.asList(1, 2, 1, 3, 2));
+        int d = 3;
+        int m = 2;
+        System.out.println(birthday(b, d, m));
+
+          /*
+        System.out.println(breakingRecords(b));
+
         int x1 = 0;
         int v1 = 3;
         int x2 = 4;
@@ -80,6 +88,86 @@ public class Main {
 
 
     }
+
+    public static int divisibleSumPairs(int n, int k, List<Integer> ar) {
+        int result = 0;
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                if ((ar.get(i) + ar.get(j) % k == 0)) {
+                    result++;
+                }
+            }
+
+
+        }
+        return result;
+    }
+
+    public static int birthday(List<Integer> s, int d, int m) {
+        int barDiv = 0;
+
+        for (int i = 0; i <= s.size() - m; i++) {
+            List<Integer> subS = s.subList(i, i + m);
+
+            int sum = subS.stream().mapToInt(Integer::intValue).sum();
+            if (sum == d) {
+                barDiv++;
+            }
+            return sum;
+
+        }
+        return barDiv;
+    }
+
+    public static List<Integer> breakingRecords(List<Integer> scores) {
+        List<Integer> records = new ArrayList<>();
+        int a = 0, b = 0;
+        int maxScore = scores.get(0);
+        int minScore = scores.get(0);
+
+        for (int num : scores) {
+            if (num > maxScore) {
+                a++;
+            } else if (num < minScore) {
+                b++;
+            }
+        }
+
+        records.addAll(Arrays.asList(a, b));
+        return records;
+    }
+
+
+    public static int getTotalX(List<Integer> a, List<Integer> b) {
+        int counter = 0;
+
+        for (int i = 1; i <= 100; i++) {
+            boolean allADivide = true;
+            for (int j = 0; j < a.size(); j++) {
+                if (i % a.get(j) != 0) {
+                    allADivide = false;
+                    break;
+                }
+            }
+
+            if (!allADivide) continue;
+
+            boolean dividesAllB = true;
+            for (int j = 0; j < b.size(); j++) {
+                if (b.get(j) % i != 0) {
+                    dividesAllB = false;
+                    break;
+                }
+            }
+
+            if (dividesAllB) {
+                counter++;
+            }
+        }
+        // Optional debug output
+        return counter;
+    }
+
 
     public static String kangaroo(int x1, int v1, int x2, int v2) {
 
